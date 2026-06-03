@@ -256,7 +256,7 @@ aws ecr get-login-password \
 
 ```bash
 docker tag static-app:v1 \
-610714125174.dkr.ecr.ap-south-1.amazonaws.com/static-app:v1
+<amazon-id>.dkr.ecr.ap-south-1.amazonaws.com/static-app:v1
 ```
 
 ---
@@ -265,7 +265,7 @@ docker tag static-app:v1 \
 
 ```bash
 docker push \
-610714125174.dkr.ecr.ap-south-1.amazonaws.com/static-app:v1
+<amazon-id>.dkr.ecr.ap-south-1.amazonaws.com/static-app:v1
 ```
 
 ---
@@ -463,7 +463,7 @@ kubectl get pods -o wide
 ## service.yaml
 
 ```yaml
-apiVersion: v1
+apiVersion: unipiper-v1
 kind: Service
 
 metadata:
