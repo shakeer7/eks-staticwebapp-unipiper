@@ -411,7 +411,7 @@ STATUS = Ready
 ## deployment.yaml
 
 ```yaml
-apiVersion: apps/v1
+apiVersion: static-app/v1
 kind: Deployment
 
 metadata:
