@@ -1,0 +1,1316 @@
+/* UNi Piper — student app modules (mobile-first) */
+:root {
+  --app-navy: #102a44;
+  --app-navy-mid: #1a3a5c;
+  --app-gold: #d4af37;
+  --app-gold-soft: linear-gradient(135deg, #e8c96a 0%, #c9a227 100%);
+  --app-page-bg: #f1f5f9;
+  --app-card: #ffffff;
+  --app-muted: #64748b;
+  --app-nav-h: 4.25rem;
+  --app-radius: 14px;
+  --app-radius-sm: 10px;
+}
+
+[data-theme="dark"] .app-student {
+  --app-page-bg: #0f172a;
+  --app-card: rgba(30, 41, 59, 0.92);
+  --app-muted: #94a3b8;
+}
+
+.app-student {
+  min-height: 100vh;
+  background: var(--app-page-bg);
+  color: var(--text);
+  padding-bottom: calc(var(--app-nav-h) + 0.5rem);
+  --app-gutter: clamp(1rem, 5vw, 5rem);
+}
+
+.app-student .bg-grid {
+  opacity: 0.35;
+}
+
+.app-mobile {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* —— Navy header (dashboard, modules) —— */
+.app-header-navy {
+  background: linear-gradient(165deg, var(--app-navy) 0%, var(--app-navy-mid) 100%);
+  color: #fff;
+  padding: 1rem var(--app-gutter) 1.25rem;
+  border-radius: 0 0 var(--app-radius) var(--app-radius);
+  margin-bottom: 0.5rem;
+}
+
+.app-header-navy.app-header-compact {
+  padding-bottom: 1rem;
+}
+
+.app-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.app-welcome-label {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.app-welcome-name {
+  margin: 0.15rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.app-welcome-meta {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.app-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+}
+
+.app-icon-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.app-badge-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid var(--app-navy-mid);
+}
+
+.app-institution-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--app-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.app-institution-logo {
+  width: 3rem;
+  height: 3rem;
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.7rem;
+  color: var(--app-navy);
+  flex-shrink: 0;
+}
+
+.app-institution-text strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.app-institution-text span {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  line-height: 1.3;
+}
+
+/* —— Module title header (inner pages) —— */
+.app-module-header {
+  background: linear-gradient(165deg, var(--app-navy) 0%, var(--app-navy-mid) 100%);
+  color: #fff;
+  padding: 1rem var(--app-gutter) 1.25rem;
+  border-radius: 0 0 var(--app-radius) var(--app-radius);
+}
+
+.app-module-header h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.app-module-header .app-sub {
+  margin: 0.2rem 0 0.85rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.app-module-header-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.app-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.app-back svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.app-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--app-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.app-search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.app-search input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.app-search svg {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.app-btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--app-radius-sm);
+  background: var(--app-gold);
+  color: #fff;
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* —— Content padding —— */
+.app-content {
+  padding: 0.75rem var(--app-gutter) 1rem;
+  max-width: 100%;
+}
+
+/* —— Quick grid (home) —— */
+.app-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.app-quick-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.65rem 0.35rem;
+  background: var(--app-card);
+  border-radius: var(--app-radius-sm);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.68rem;
+  font-weight: 600;
+  transition: transform 0.15s ease;
+}
+
+.app-quick-item:active {
+  transform: scale(0.97);
+}
+
+.app-quick-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+}
+
+.bg-tint-blue {
+  background: rgba(59, 130, 246, 0.15);
+}
+.bg-tint-green {
+  background: rgba(34, 197, 94, 0.15);
+}
+.bg-tint-purple {
+  background: rgba(168, 85, 247, 0.15);
+}
+.bg-tint-orange {
+  background: rgba(249, 115, 22, 0.15);
+}
+.bg-tint-red {
+  background: rgba(239, 68, 68, 0.12);
+}
+.bg-tint-cyan {
+  background: rgba(6, 182, 212, 0.15);
+}
+.bg-tint-pink {
+  background: rgba(236, 72, 153, 0.12);
+}
+
+/* —— Section —— */
+.app-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.app-section-head h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.app-section-head a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.app-panel {
+  background: var(--app-card);
+  border-radius: var(--app-radius);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* —— Announcements —— */
+.app-announce-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.app-announce-card {
+  padding: 0.85rem;
+  border-radius: var(--app-radius-sm);
+  border: 1px solid var(--border);
+  background: var(--app-card);
+  text-align: left;
+}
+
+.app-announce-card .dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.35rem;
+  vertical-align: middle;
+}
+
+.app-announce-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+}
+
+.app-announce-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--app-muted);
+  line-height: 1.45;
+}
+
+.app-announce-meta {
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  color: var(--app-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.app-tag {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.tag-exam {
+  background: rgba(236, 72, 153, 0.15);
+  color: #db2777;
+}
+.tag-general {
+  background: rgba(59, 130, 246, 0.15);
+  color: #2563eb;
+}
+
+/* —— Horizontal scroll events —— */
+.app-events-scroll {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.app-event-card {
+  flex: 0 0 11rem;
+  scroll-snap-align: start;
+  border-radius: var(--app-radius-sm);
+  overflow: hidden;
+  background: var(--app-card);
+  border: 1px solid var(--border);
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-event-media {
+  height: 4.5rem;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.app-event-media.img-audience {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=60") center/cover;
+}
+
+.app-event-body {
+  padding: 0.6rem 0.65rem;
+}
+
+.app-event-body strong {
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.app-event-body span {
+  font-size: 0.7rem;
+  color: var(--app-muted);
+}
+
+/* —— Club pills —— */
+.app-club-row {
+  display: flex;
+  gap: 0.65rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.app-club-mini {
+  flex: 0 0 auto;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.app-club-mini .avatar {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--border);
+  margin: 0 auto 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  overflow: hidden;
+}
+
+.app-club-mini .name {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.app-club-mini .count {
+  font-size: 0.65rem;
+  color: var(--app-muted);
+}
+
+/* —— Placement CTA —— */
+.app-placement-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1rem;
+  background: var(--app-gold-soft);
+  border-radius: var(--app-radius);
+  color: #422006;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(202, 138, 4, 0.35);
+}
+
+.app-placement-cta .cta-icon {
+  font-size: 1.75rem;
+}
+
+.app-placement-cta .cta-text strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.app-placement-cta .cta-text span {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.app-placement-cta .cta-arrow {
+  margin-left: auto;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* —— Bottom navigation —— */
+.app-bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: var(--app-nav-h);
+  padding: 0.35rem var(--app-gutter) calc(0.35rem + env(safe-area-inset-bottom, 0));
+  background: var(--app-card);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.06);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.app-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--app-muted);
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.app-nav-item svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  opacity: 0.65;
+}
+
+.app-nav-item.is-active {
+  color: var(--app-navy);
+}
+
+.app-nav-item.is-active svg {
+  opacity: 1;
+}
+
+[data-theme="dark"] .app-nav-item.is-active {
+  color: var(--accent);
+}
+
+.app-version {
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--app-muted);
+  padding: 0 var(--app-gutter) 0.25rem;
+}
+
+/* —— Profile —— */
+.app-profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem var(--app-gutter) 2.5rem;
+  background: linear-gradient(165deg, var(--app-navy) 0%, var(--app-navy-mid) 100%);
+  color: #fff;
+  border-radius: 0 0 var(--app-radius) var(--app-radius);
+}
+
+.app-profile-header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.app-profile-card {
+  margin: -2rem var(--app-gutter) 1rem;
+  padding: 1rem;
+  background: var(--app-card);
+  border-radius: var(--app-radius);
+  border: 1px solid var(--border);
+  position: relative;
+  z-index: 2;
+}
+
+.app-profile-top {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.app-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.app-profile-rows {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+.app-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  padding: 0.4rem 0;
+  color: var(--text);
+}
+
+.app-profile-row svg {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.app-pill {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  background: var(--border);
+  border-radius: 999px;
+  margin-top: 0.35rem;
+}
+
+.app-menu-card {
+  margin: 0 var(--app-gutter) 1rem;
+  background: var(--app-card);
+  border-radius: var(--app-radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.app-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  text-decoration: none;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.app-menu-item:last-child {
+  border-bottom: none;
+}
+
+.app-menu-item .mi-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.app-menu-item .chev {
+  margin-left: auto;
+  opacity: 0.35;
+}
+
+.app-menu-item small {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--app-muted);
+  margin-top: 0.15rem;
+}
+
+.app-menu-item.danger {
+  color: #dc2626;
+}
+
+.app-menu-item.danger .mi-icon {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.app-settings-label {
+  padding: 0.5rem var(--app-gutter) 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--app-muted);
+}
+
+/* —— Chips —— */
+.app-chips {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.app-chip {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--app-card);
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.app-chip.is-active {
+  background: var(--app-navy);
+  color: #fff;
+  border-color: var(--app-navy);
+}
+
+/* —— Club / Alumni / Market cards —— */
+.app-club-card {
+  background: var(--app-card);
+  border-radius: var(--app-radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.app-club-card .hero {
+  height: 7rem;
+  background: linear-gradient(135deg, #334155, #1e293b);
+  position: relative;
+}
+
+.app-club-card .hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app-club-card .logo-overlap {
+  position: absolute;
+  bottom: -0.75rem;
+  left: 1rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px solid var(--app-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.app-club-card .body {
+  padding: 1.1rem 1rem 1rem;
+  padding-top: 1.25rem;
+}
+
+.app-club-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--app-navy);
+}
+
+[data-theme="dark"] .app-club-card h3 {
+  color: var(--text);
+}
+
+.app-club-card .tags {
+  font-size: 0.75rem;
+  color: var(--app-muted);
+  margin-bottom: 0.5rem;
+}
+
+.app-club-card .desc {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.45;
+  margin: 0 0 0.75rem;
+}
+
+.app-club-card .foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--app-muted);
+}
+
+.app-alumni-card {
+  background: var(--app-card);
+  border-radius: var(--app-radius);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  margin-bottom: 0.85rem;
+  text-align: left;
+  position: relative;
+}
+
+.app-alumni-top {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.app-alumni-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+  flex-shrink: 0;
+}
+
+.app-alumni-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.app-alumni-card .role {
+  font-size: 0.85rem;
+  color: var(--app-muted);
+  margin: 0.2rem 0;
+}
+
+.app-alumni-card .company-row {
+  font-size: 0.8rem;
+  color: var(--app-muted);
+  margin-bottom: 0.5rem;
+}
+
+.app-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0;
+}
+
+.app-tag-sm {
+  font-size: 0.65rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  background: var(--border);
+  font-weight: 600;
+}
+
+.tag-mentor {
+  background: rgba(34, 197, 94, 0.15);
+  color: #16a34a;
+}
+.tag-ref {
+  background: rgba(234, 179, 8, 0.2);
+  color: #ca8a04;
+}
+
+.app-skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.app-skill-chips span {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.45rem;
+  background: var(--border);
+  border-radius: 6px;
+  color: var(--app-muted);
+}
+
+.app-btn-connect {
+  width: 100%;
+  padding: 0.65rem;
+  background: var(--app-navy);
+  color: #fff;
+  border: none;
+  border-radius: var(--app-radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .app-btn-connect {
+  background: var(--accent);
+}
+
+/* —— Market grid —— */
+.app-market-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.app-product-card {
+  background: var(--app-card);
+  border-radius: var(--app-radius-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-product-card .ph {
+  height: 6.5rem;
+  background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+}
+
+.app-product-card .body {
+  padding: 0.6rem 0.65rem;
+}
+
+.app-product-card strong {
+  font-size: 0.78rem;
+  display: block;
+  line-height: 1.3;
+  margin-bottom: 0.35rem;
+}
+
+.app-price {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #b8860b;
+}
+
+.app-product-card .status {
+  font-size: 0.65rem;
+  margin-top: 0.35rem;
+  display: inline-block;
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
+}
+
+.app-product-card .status.good {
+  background: rgba(234, 179, 8, 0.15);
+  color: #a16207;
+}
+
+/* —— Tabs placement —— */
+.app-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.app-tab {
+  flex: 1;
+  padding: 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--app-card);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.app-tab.is-active {
+  background: var(--app-navy);
+  color: #fff;
+  border-color: var(--app-navy);
+}
+
+[data-theme="dark"] .app-tab.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.app-job-card {
+  background: var(--app-card);
+  border: 1px solid var(--border);
+  border-radius: var(--app-radius);
+  padding: 1rem;
+  margin-bottom: 0.85rem;
+  text-align: left;
+}
+
+.app-job-card h3 {
+  margin: 0 0 0.2rem;
+  font-size: 0.95rem;
+}
+
+.app-job-card .co {
+  font-size: 0.8rem;
+  color: var(--app-muted);
+  margin-bottom: 0.5rem;
+}
+
+.app-job-meta {
+  font-size: 0.75rem;
+  color: var(--app-muted);
+  margin-bottom: 0.5rem;
+}
+
+.app-job-card .desc {
+  font-size: 0.82rem;
+  color: var(--app-muted);
+  line-height: 1.4;
+  margin-bottom: 0.65rem;
+}
+
+.app-job-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 0.65rem;
+}
+
+.app-job-foot .pay {
+  font-weight: 700;
+  color: #b45309;
+}
+
+.app-job-foot .deadline {
+  color: #dc2626;
+}
+
+.app-btn-apply {
+  width: 100%;
+  padding: 0.55rem;
+  background: var(--border);
+  border: none;
+  border-radius: var(--app-radius-sm);
+  font-weight: 600;
+  color: var(--app-navy);
+  cursor: pointer;
+}
+
+/* —— Notifications —— */
+.app-notif-header {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem var(--app-gutter);
+  background: var(--app-card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.app-notif-header .app-back {
+  color: var(--text);
+  background: var(--border);
+}
+
+.app-notif-header h1 {
+  margin: 0;
+  font-size: 1.05rem;
+  text-align: center;
+  justify-self: center;
+}
+
+.app-notif-list {
+  padding: 0.75rem var(--app-gutter);
+}
+
+.app-notif-card {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border-radius: var(--app-radius-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 0.65rem;
+  background: var(--app-card);
+  position: relative;
+  text-align: left;
+}
+
+.app-notif-card.unread {
+  background: rgba(59, 130, 246, 0.06);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.app-notif-card .n-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.app-notif-card h3 {
+  margin: 0 0 0.25rem;
+  font-size: 0.88rem;
+}
+
+.app-notif-card p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--app-muted);
+  line-height: 1.4;
+}
+
+.app-notif-card time {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.68rem;
+  color: var(--app-muted);
+}
+
+.app-notif-card .unread-dot {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* QR block */
+.app-qr-block {
+  margin: 0 var(--app-gutter) 1rem;
+  padding: 1.25rem;
+  background: var(--app-navy);
+  border-radius: var(--app-radius);
+  text-align: center;
+  color: #fff;
+}
+
+.app-qr-placeholder {
+  width: 8rem;
+  height: 8rem;
+  margin: 0 auto 0.75rem;
+  background: repeating-linear-gradient(
+      0deg,
+      #fff,
+      #fff 8px,
+      transparent 8px,
+      transparent 16px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #fff,
+      #fff 8px,
+      transparent 8px,
+      transparent 16px
+    );
+  border-radius: 8px;
+  opacity: 0.95;
+}
+
+.app-qr-block p {
+  margin: 0;
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+.app-qr-block .id-num {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.app-feature-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin: 0 var(--app-gutter) 1rem;
+}
+
+.app-feature-mini {
+  padding: 1rem;
+  background: var(--app-card);
+  border-radius: var(--app-radius-sm);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.app-feature-mini .fi {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+/* Full-width / large screens */
+@media (min-width: 640px) {
+  .app-welcome-name {
+    font-size: 1.6rem;
+  }
+
+  .app-quick-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.25rem;
+  }
+
+  .app-quick-item {
+    font-size: 0.75rem;
+    padding: 0.85rem 0.5rem;
+  }
+
+  .app-nav-item {
+    font-size: 0.72rem;
+  }
+
+  .app-nav-item svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-quick-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .app-section-head h2 {
+    font-size: 1.15rem;
+  }
+
+  .app-club-row .avatar {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  .app-events-scroll {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 1rem;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+
+  .app-event-card {
+    flex: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-student {
+    --app-gutter: clamp(1.5rem, 8vw, 8rem);
+  }
+
+  .app-market-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .app-product-card .ph {
+    height: 8rem;
+  }
+
+  .app-placement-cta {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .app-job-card {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .app-student {
+    --app-gutter: clamp(2rem, 10vw, 12rem);
+  }
+}

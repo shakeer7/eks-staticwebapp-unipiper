@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          var k = "uniPiperTheme";
+          var s = localStorage.getItem(k);
+          var t =
+            s === "light" || s === "dark"
+              ? s
+              : matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+    <title>UNiPiper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="page">
+      <header>
+        <a class="logo" href="index.html">UN<span>i</span>Piper</a>
+        <nav class="nav-actions" aria-label="Account">
+          <button type="button" class="theme-toggle" id="theme-toggle">
+            <span class="theme-toggle-icon" aria-hidden="true">&#9728;</span>
+          </button>
+          <a class="btn btn-ghost" href="login.html">Log in</a>
+          <a class="btn btn-primary" href="register.html">Register</a>
+        </nav>
+      </header>
+
+      <main>
+        <p class="hero-badge">Your campus, connected</p>
+        <h1>Welcome to <span class="brand-accent">UNiPiper</span></h1>
+        <p class="lead">
+          One place to stay on top of courses, deadlines, and campus life—built for students who move fast.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href="login.html">Log in</a>
+          <a class="btn btn-ghost btn-lg" href="register.html">Create an account</a>
+        </div>
+
+        <section class="features" aria-label="Highlights">
+          <article class="feature">
+            <h3>Schedules &amp; reminders</h3>
+            <p>Keep lectures and assignments in view without juggling five apps.</p>
+          </article>
+          <article class="feature">
+            <h3>Campus in one feed</h3>
+            <p>Events, notices, and groups tailored to your program.</p>
+          </article>
+          <article class="feature">
+            <h3>Built for focus</h3>
+            <p>Clean layout, dark-friendly UI, works on phone and laptop.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer>&copy; UNiPiper</footer>
+    </div>
+    <script src="theme.js" defer></script>
+  </body>
+</html>

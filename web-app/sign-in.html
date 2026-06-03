@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          var k = "uniPiperTheme";
+          var s = localStorage.getItem(k);
+          var t =
+            s === "light" || s === "dark"
+              ? s
+              : matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+    <title>Sign in — UNi Piper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="page">
+      <header>
+        <a class="logo" href="index.html">UN<span>i</span> Piper</a>
+        <nav class="nav-actions" aria-label="Account">
+          <button type="button" class="theme-toggle" id="theme-toggle">
+            <span class="theme-toggle-icon" aria-hidden="true">&#9728;</span>
+          </button>
+          <a class="btn btn-ghost" href="login.html">Find college</a>
+          <a class="btn btn-primary" href="register.html">Register</a>
+        </nav>
+      </header>
+
+      <div class="auth-wrap">
+        <div class="auth-card">
+          <h2>Sign in</h2>
+          <p class="sub" id="sign-in-sub">Enter your User ID and password to open the student ERP.</p>
+          <p class="demo-hint">
+            Demo: User ID <strong>sha</strong> · Password <strong>789</strong>
+          </p>
+          <p class="auth-error" id="auth-error" hidden>Invalid User ID or password.</p>
+          <form id="sign-in-form" action="#" method="post">
+            <div class="field">
+              <label for="userId">User ID</label>
+              <input id="userId" name="userId" type="text" autocomplete="username" required />
+            </div>
+            <div class="field">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" autocomplete="current-password" required />
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Log in &amp; open ERP</button>
+          </form>
+          <p class="auth-footer">
+            <a href="login.html">← Find a different college</a>
+            &nbsp;·&nbsp; No account? <a href="register.html">Register</a>
+          </p>
+        </div>
+      </div>
+
+      <footer>&copy; UNi Piper</footer>
+    </div>
+    <script>
+      (function () {
+        var el = document.getElementById("sign-in-sub");
+        var name = sessionStorage.getItem("uniPiperCollegeName");
+        if (name) {
+          el.textContent =
+            "You chose " + name + ". Use User ID and password to open the student ERP.";
+        }
+      })();
+    </script>
+    <script>
+      (function () {
+        document.getElementById("sign-in-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          var uid = document.getElementById("userId").value.trim().toLowerCase();
+          var pass = document.getElementById("password").value;
+          var err = document.getElementById("auth-error");
+          err.hidden = true;
+          if (uid === "sha" && pass === "789") {
+            sessionStorage.setItem("uniPiperUserId", "sha");
+            window.location.href = "erp.html";
+          } else {
+            err.hidden = false;
+          }
+        });
+      })();
+    </script>
+    <script src="theme.js" defer></script>
+  </body>
+</html>

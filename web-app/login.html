@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          var k = "uniPiperTheme";
+          var s = localStorage.getItem(k);
+          var t =
+            s === "light" || s === "dark"
+              ? s
+              : matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+    <title>Find your college — UNi Piper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="page page-search">
+      <header>
+        <a class="logo" href="index.html">UN<span>i</span> Piper</a>
+        <nav class="nav-actions" aria-label="Account">
+          <button type="button" class="theme-toggle" id="theme-toggle">
+            <span class="theme-toggle-icon" aria-hidden="true">&#9728;</span>
+          </button>
+          <a class="btn btn-ghost" href="sign-in.html">Sign in</a>
+          <a class="btn btn-primary" href="register.html">Register</a>
+        </nav>
+      </header>
+
+      <main class="search-main">
+        <h1 class="search-title">Find your college</h1>
+        <p class="search-lead">Search by name or city. Select your school to continue.</p>
+
+        <div class="search-bar-wrap">
+          <label class="visually-hidden" for="college-search">Search colleges</label>
+          <input
+            class="search-input"
+            type="search"
+            id="college-search"
+            name="q"
+            placeholder="Type a college name or location…"
+            autocomplete="off"
+            autofocus
+          />
+        </div>
+
+        <p class="search-meta" id="search-count" aria-live="polite"></p>
+
+        <ul class="college-list" id="college-list" role="listbox" aria-label="Matching colleges"></ul>
+
+        <div class="search-actions">
+          <a class="btn btn-primary is-disabled" id="btn-continue" href="#" aria-disabled="true"
+            >Continue with selected college</a
+          >
+          <p class="auth-footer search-footer-note">
+            Already picked your college? <a href="sign-in.html">Sign in with email</a>
+          </p>
+        </div>
+      </main>
+
+      <footer>&copy; UNi Piper</footer>
+    </div>
+
+    <script>
+      (function () {
+        var colleges = [
+        { id: "1", name: "International Institute of Information Technology Hyderabad (IIIT Hyderabad)", city: "Hyderabad, Telangana" },
+        { id: "3", name: "University of Hyderabad", city: "Hyderabad, Telangana" },
+        { id: "2", name: "Jawaharlal Nehru Technological University Hyderabad (JNTUH)", city: "Hyderabad, Telangana" },
+        { id: "5", name: "Vasavi College of Engineering", city: "Hyderabad, Telangana" },
+        { id: "4", name: "Chaitanya Bharathi Institute of Technology (CBIT)", city: "Hyderabad, Telangana" },
+        { id: "7", name: "National Institute of Technology Warangal (NIT Warangal)", city: "Warangal, Telangana" },
+        { id: "6", name: "Kakatiya Institute of Technology and Science (KITS)", city: "Warangal, Telangana" },
+        { id: "8", name: "SR University", city: "Warangal, Telangana" },
+        ];
+
+        var listEl = document.getElementById("college-list");
+        var inputEl = document.getElementById("college-search");
+        var countEl = document.getElementById("search-count");
+        var continueBtn = document.getElementById("btn-continue");
+
+        var selectedId = sessionStorage.getItem("uniPiperCollegeId");
+
+        function setContinueState() {
+          if (selectedId) {
+            continueBtn.href = "sign-in.html?college=" + encodeURIComponent(selectedId);
+            continueBtn.classList.remove("is-disabled");
+            continueBtn.setAttribute("aria-disabled", "false");
+          } else {
+            continueBtn.href = "#";
+            continueBtn.classList.add("is-disabled");
+            continueBtn.setAttribute("aria-disabled", "true");
+          }
+        }
+
+        continueBtn.addEventListener("click", function (e) {
+          if (!selectedId) {
+            e.preventDefault();
+            inputEl.focus();
+          }
+        });
+
+        function normalize(s) {
+          return (s || "").toLowerCase();
+        }
+
+        function matches(college, query) {
+          if (!query) return true;
+          var q = normalize(query);
+          return (
+            normalize(college.name).indexOf(q) !== -1 || normalize(college.city).indexOf(q) !== -1
+          );
+        }
+
+        function render() {
+          var query = inputEl.value.trim();
+          var filtered = colleges.filter(function (c) {
+            return matches(c, query);
+          });
+
+          countEl.textContent =
+            filtered.length === colleges.length
+              ? colleges.length + " colleges"
+              : filtered.length + " match" + (filtered.length === 1 ? "" : "es");
+
+          listEl.innerHTML = "";
+          filtered.forEach(function (c) {
+            var li = document.createElement("li");
+            li.className = "college-item";
+            li.setAttribute("role", "option");
+            li.dataset.id = c.id;
+            if (String(c.id) === String(selectedId)) li.classList.add("is-selected");
+            li.innerHTML =
+              '<span class="college-name">' +
+              escapeHtml(c.name) +
+              '</span><span class="college-city">' +
+              escapeHtml(c.city) +
+              "</span>";
+            li.addEventListener("click", function () {
+              selectedId = c.id;
+              sessionStorage.setItem("uniPiperCollegeId", c.id);
+              sessionStorage.setItem("uniPiperCollegeName", c.name);
+              Array.prototype.forEach.call(listEl.querySelectorAll(".college-item"), function (el) {
+                el.classList.toggle("is-selected", el.dataset.id === String(c.id));
+              });
+              setContinueState();
+            });
+            listEl.appendChild(li);
+          });
+        }
+
+        function escapeHtml(text) {
+          var div = document.createElement("div");
+          div.textContent = text;
+          return div.innerHTML;
+        }
+
+        inputEl.addEventListener("input", render);
+        render();
+
+        if (selectedId) {
+          setContinueState();
+        }
+      })();
+    </script>
+    <script src="theme.js" defer></script>
+  </body>
+</html>
